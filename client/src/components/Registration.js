@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
@@ -11,10 +11,12 @@ import { useState } from 'react';
 
 export default function Registration() {
     
+    
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -35,6 +37,8 @@ export default function Registration() {
             // const result = await axios.post('http://localhost:5000/api/register', formData)
             // console.log(result.data)
 
+            
+
             let result = await fetch('http://localhost:5000/api/register', {
                 headers:{
                     'Accept': 'application/json',
@@ -48,6 +52,7 @@ export default function Registration() {
                     password: password
                 })
             })
+            // setRefresh(!refresh)
             await result.json()
 
             setName("")

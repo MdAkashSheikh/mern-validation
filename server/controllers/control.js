@@ -20,6 +20,16 @@ const registerUser = async(req, res)=> {
     }
 }
 
+const getData = async(req, res) => {
+    try {
+        const allData = await User.find({}).sort('-date');
+        res.send({allData})
+    } catch (err) {
+        res.status(404).send(err)
+    }
+}
+
 module.exports = {
-    registerUser
+    registerUser,
+    getData
 }
