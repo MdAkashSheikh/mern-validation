@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 export default function ShowData() {
 
@@ -20,6 +21,13 @@ export default function ShowData() {
     setCustomer(allCustomer.allData);
     setRefresh(!refresh);
   };
+  
+  async function handleDelete(id) {
+      await fetch('http://localhost:5000/api/delete-data/' + id, {
+        method: "DELETE"
+      })
+      setRefresh(!refresh)
+  }
 
 
   return (
@@ -35,6 +43,8 @@ export default function ShowData() {
             <td>Name</td>
             <td>Phone</td>
             <td>Email</td>
+            <td></td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +54,21 @@ export default function ShowData() {
               <td>{val.name}</td>
               <td>{val.phone}</td>
               <td>{val.email}</td>
+              <td>
+                {" "}
+                <Link to={"/edit-customer/" + val._id}>
+                  <Button variant="outline-primary">Edit</Button>
+                </Link>
+                
+              </td>
+              <td>
+                <Button
+                  onClick={(e) => handleDelete(val._id)}
+                  variant="outline-danger"
+                >
+                  Delete
+                </Button>
+              </td>
             </tr>
             ))
           }

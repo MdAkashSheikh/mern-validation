@@ -69,7 +69,13 @@ export default function Registration() {
 
 
   return (
-    <Card className='container' style={{ width: '50rem' }}>
+    <div> 
+        <div className="row justify-content-center">
+            <div className="col-4">
+                <h1>Registration Form</h1>
+            </div>
+        </div>
+        <Card className='container' style={{ width: '50rem' }}>
         <Form className='m-4' onSubmit={(e) => handleSubmit(e)}>
             <Row className="g-2 m-2">
                 <Col md>
@@ -116,6 +122,6 @@ export default function Registration() {
             </Row>
         </Form>
     </Card>
-
+    </div>
   )
 }

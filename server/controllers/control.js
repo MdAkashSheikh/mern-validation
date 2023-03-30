@@ -29,7 +29,18 @@ const getData = async(req, res) => {
     }
 }
 
+const deleteData = async(req, res) => {
+    const id = req.params.id;
+    try {
+        await User.findByIdAndRemove(id);
+        res.send('Success')
+    } catch (err) {
+        res.status(404).send(err)
+    }
+}
+
 module.exports = {
     registerUser,
-    getData
+    getData,
+    deleteData
 }
